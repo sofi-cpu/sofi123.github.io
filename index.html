@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Una pregunta muy importante 💖</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #ffd6e8, #ffeaf4);
+      font-family: 'Comic Sans MS', 'Poppins', system-ui, -apple-system, sans-serif;
+    }
+    .card {
+      background: #fff0f7;
+      border-radius: 24px;
+      padding: 32px 28px 36px;
+      width: min(92vw, 420px);
+      box-shadow: 0 20px 40px rgba(255, 105, 180, 0.25);
+      text-align: center;
+      position: relative;
+    }
+    h1 {
+      margin-top: 0;
+      color: #ff5fa2;
+      font-size: 1.6rem;
+    }
+    p {
+      color: #ff7fb8;
+      margin-bottom: 28px;
+    }
+    .friends {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 18px;
+      font-size: 0.9rem;
+    }
+    .friends span {
+      background: #ffe0ee;
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+    .buttons {
+      position: relative;
+      height: 120px;
+    }
+    button {
+      border: none;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform .15s ease, box-shadow .15s ease;
+      box-shadow: 0 8px 16px rgba(255, 105, 180, .35);
+    }
+    button:active { transform: scale(0.96); }
+    #yesBtn {
+      background: #ff5fa2;
+      color: white;
+    }
+    #noBtn {
+      background: #ffd1e6;
+      color: #ff3d8d;
+      position: absolute;
+      left: 55%;
+      top: 52%;
+      transform: translate(-50%, -50%);
+    }
+    .result {
+      display: none;
+      margin-top: 20px;
+      color: #ff3d8d;
+      font-size: 1.1rem;
+    }
+    .sparkles {
+      font-size: 1.4rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Pregunta seria</h1>
+    <div class="friends">
+      <span>🎀 Madelyn</span>
+      <span>🎀 Nicol</span>
+      <span>🧸 Eduardo, el emo</span>
+    </div>
+    <p>¿Confirmamos oficialmente la reunión de los miserables el 14 de febrero para hundirnos en la miseria juntos?</p>
+
+    <div class="buttons">
+      <button id="yesBtn">si 💓</button>
+      <button id="noBtn">no 😔✋🏻</button>
+    </div>
+
+    <div class="result" id="result">
+      <div class="sparkles">✨️✨️✨️</div>
+      <p>Perfecto, entonces nos vemos,  ya no los odio. Plan confirmado y el que cancele lo caigo a palazos 💗</p>
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById('noBtn');
+    const yesBtn = document.getElementById('yesBtn');
+    const result = document.getElementById('result');
+
+    const moveNoButton = () => {
+      const container = document.querySelector('.buttons');
+      const maxX = container.clientWidth - noBtn.offsetWidth;
+      const maxY = container.clientHeight - noBtn.offsetHeight;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
+      noBtn.style.left = x + 'px';
+      noBtn.style.top = y + 'px';
+    };
+
+    noBtn.addEventListener('mouseenter', moveNoButton);
+    noBtn.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      moveNoButton();
+    });
+
+    yesBtn.addEventListener('click', () => {
+      result.style.display = 'block';
+      yesBtn.disabled = true;
+      noBtn.style.display = 'none';
+      yesBtn.textContent = 'al fin sapos';
+    });
+  </script>
+</body>
+</html>
